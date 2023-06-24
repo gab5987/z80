@@ -1,0 +1,48 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 1.
+Hexadecimal [24-Bits]
+
+
+
+                                      1   .include "mem_map.inc"
+                                      1 
+                           000000     2 ROM_START = 0x0000
+                           0007FF     3 ROM_END = 0x7ff
+                                      4 
+                           000800     5 RAM_START = 0x0800
+                           000FFF     6 RAM_END = 0x0fff
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 2.
+Hexadecimal [24-Bits]
+
+
+
+                                      2   .module crt0
+                                      3   .area _HEADER (ABS)
+                                      4 ;; Reset vector
+      000000                          5   .org ROM_START ;; Start from address &0000
+      000000 C3 0A 00         [10]    6   jp init
+                                      7 
+      00000A                          8   .org 0x000a
+      00000A                          9 init:
+                                     10 ;; Stack at the top of memory.
+      00000A 31 FF 0F         [10]   11   ld sp, #RAM_END
+                                     12 ;; Initialise global variables
+      00000D CD 00 00         [17]   13   call gsinit
+      000010 CD 00 00         [17]   14   call _start
+      000013 C3 01 00         [10]   15   jp _exit
+                                     16   ;; Ordering of segments for the linker.
+                                     17   .area _HOME
+                                     18   .area _CODE
+                                     19   .area _GSINIT
+                                     20   .area _GSFINAL
+                                     21   .area _DATA
+                                     22   .area _BSS
+                                     23   .area _HEAP
+                                     24   .area _CODE
+      000000                         25 __clock::
+      000000 C9               [10]   26   ret
+      000001                         27 _exit::
+      000001 C9               [10]   28   ret
+                                     29   .area _GSINIT
+      000000                         30 gsinit::  
+                                     31 .area _GSFINAL
+      000000 C9               [10]   32   ret

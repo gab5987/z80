@@ -1,0 +1,6 @@
+
+ROM_START = 0x0000
+ROM_END = 0x7ff
+
+RAM_START = 0x0800
+RAM_END = 0x0fff

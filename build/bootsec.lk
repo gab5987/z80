@@ -1,0 +1,10 @@
+-mjwx
+-i bootsec.ihx
+-y
+-b _CODE = 0x0000
+-b _DATA = 0x0100
+-y
+bootsec.rel
+crt0.rel
+
+-e

@@ -1,0 +1,31 @@
+;!FILE test.asm
+XL3
+H 9 areas D global symbols
+M test
+O -mz80
+S .__.ABS. Def000000
+A _CODE size 7 flags 0 addr 0
+S _main Def000000
+S C$test.c$1$0_0$1 Def000000
+S C$test.c$3$2_0$1 Def000001
+S C$test.c$5$1_0$1 Def000005
+S C$test.c$6$1_0$1 Def000006
+S XG$main$0$0 Def000006
+S A$test$52 Def000000
+S A$test$64 Def000005
+S A$test$56 Def000001
+S A$test$57 Def000004
+S A$test$69 Def000006
+S G$main$0$0 Def000000
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00 00
+R 00 00 00 00
+T 00 00 00 F5 21 FF 00 E3 F1 C9
+R 00 00 00 00
